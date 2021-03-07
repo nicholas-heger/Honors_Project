@@ -45,34 +45,39 @@ body {font-size:16px;}
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>Physics Solver/Simulator</b></h1>
-    <h1 class="w3-xxxlarge w3-text-red"><b>Select Unit</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Vectors</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
   
-  <!-- Photo grid (modal) -->
+  <!-- Inputs -->
   <div class="w3-row-padding">
-    <div class="w3-half">
-      <img src="./Vectors.png" style="width:100%" onclick="onClick(this)" alt="Vectors">
-      <img src="./2D_Kinematics.png" style="width:100%" onclick="onClick(this)" alt="Two Dimensional Kinematics">
-      <img src="./Vectors.png" style="width:100%" onclick="onClick(this)" alt="Filler">
+    <div class="w3-third">
+        <label for="vector1mag">Magnitude of First Vector</label><br>
+        <input type="text" id="vector1mag" name="vector1mag" style="width: 100%; margin-bottom: 5%;"><br>
+        <label for="vector1deg">Direction of First Vector</label><br>
+        <input type="text" id="vector1deg" name="vector1deg" style="width: auto; margin-bottom: 5%;"><span> degrees</span><br>
+        <input type="text" id="vector1dir1" name="vector1dir1" style="width: 25%; margin-bottom: 10%;"><span> of </span>
+        <input type="text" id="vector1dir2" name="vector1dir2" style="width: 25%; margin-bottom: 10%;"><br>
+        <button onclick="calculate()" style="margin-bottom: 10%;">Calculate</button><br>
+        <label for="resultMag">Magnitude of Resulting Vector</label><br>
+        <p id="resultMag" name="resultMag">0</p>
+        <label for="resultDir">Direction of Resulting Vector</label><br>
+        <p id="resultDir" name="resultDir">0</p>
     </div>
 
-    <div class="w3-half">
-      <img src="./1D_Kinematics.png" style="width:100%" onclick="onClick(this)" alt="One Dimensional Kinematics">
-      <img src="./Force.png" style="width:100%" onclick="onClick(this)" alt="Forces and Newton's Laws">
-      <img src="./Vectors.png" style="width:100%" onclick="onClick(this)" alt="Filler">
+    <div class="w3-third" style="text-align: center; font-size: 72pt;">
+        +
     </div>
-  </div>
 
-  <!-- Modal for full size images on click-->
-  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-      <img id="img01" class="w3-image">
-      <p id="caption"></p>
+    <div class="w3-third">
+        <label for="vector2mag">Magnitude of Second Vector</label><br>
+        <input type="text" id="vector2mag" name="vector2mag" style="width: 100%; margin-bottom: 5%;"><br>
+        <label for="vector2deg">Direction of Second Vector</label><br>
+        <input type="text" id="vector2deg" name="vector2deg" style="width: auto; margin-bottom: 5%;"><span> degrees</span><br>
+        <input type="text" id="vector2dir1" name="vector2dir1" style="width: 25%; margin-bottom: 10%;"><span> of </span>
+        <input type="text" id="vector2dir2" name="vector2dir2" style="width: 25%; margin-bottom: 10%;"><br>
     </div>
   </div>
-  
 
 <!-- End page content -->
 </div>
@@ -89,12 +94,17 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
+// calculate() will calculate the resultant vector magnitude and direction
+function calculate() {
+    var vector1mag = parseFloat(document.getElementById("vector1mag").value);
+    var vector2mag = parseFloat(document.getElementById("vector2mag").value);
+    var vector1deg = parseFloat(document.getElementById("vector1deg").value);
+    var vector2deg = parseFloat(document.getElementById("vector2deg").value);
+    var vector1dir1 = document.getElementById("vector1dir1").value;
+    var vector1dir2 = document.getElementById("vector1dir2").value;
+    var vector2dir1 = document.getElementById("vector2dir1").value;
+    var vector2dir2 = document.getElementById("vector2dir2").value;
+    document.getElementById("resultMag").innerText = vector1mag + vector2mag;
 }
 </script>
 
