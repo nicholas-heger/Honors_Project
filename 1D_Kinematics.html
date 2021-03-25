@@ -52,26 +52,26 @@ body {font-size:16px;}
   <!-- Inputs -->
   <div class="w3-row-padding">
     <div class="w3-half">
-        <label for="vector1mag">Magnitude of First Vector</label><br>
-        <input type="text" id="vector1mag" name="vector1mag" style="width: 100%; margin-bottom: 5%;"><br>
-        <label for="vector1deg">Direction of First Vector</label><br>
-        <input type="text" id="vector1deg" name="vector1deg" style="width: auto; margin-bottom: 5%;"><span> degrees</span><br>
-        <input type="text" id="vector1dir1" name="vector1dir1" style="width: 25%; margin-bottom: 10%;"><span> of </span>
-        <input type="text" id="vector1dir2" name="vector1dir2" style="width: 25%; margin-bottom: 10%;"><br>
+        <label for="v">Final Velocity (V)</label><br>
+        <input type="text" id="v" name="v" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+        <label for="vo">Initial Velocity (V<sub>o</sub>)</label><br>
+        <input type="text" id="vo" name="vo" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+        <label for="a">Acceleration (a)</label><br>
+        <input type="text" id="a" name="a" style="margin-bottom: 2%;"><span> m/s<sup>2</sup>, up</span><br>
+        <label for="t">Time (t)</label><br>
+        <input type="text" id="t" name="t" style="margin-bottom: 2%;"><span> s</span><br>
+        <label for="x">Change in position (Δx)</label><br>
+        <input type="text" id="x" name="x" style="margin-bottom: 5%;"><span> m</span><br>
         <button onclick="calculate()" style="margin-bottom: 10%;">Calculate</button><br>
-        <label for="resultMag">Magnitude of Resulting Vector</label><br>
+        <label for="resultMag">The answer is</label><br>
         <p id="resultMag" name="resultMag">0</p>
-        <label for="resultDir">Direction of Resulting Vector</label><br>
-        <p id="resultDir" name="resultDir">0</p>
     </div>
 
     <div class="w3-half">
-        <label for="vector2mag">Magnitude of Second Vector</label><br>
-        <input type="text" id="vector2mag" name="vector2mag" style="width: 100%; margin-bottom: 5%;"><br>
-        <label for="vector2deg">Direction of Second Vector</label><br>
-        <input type="text" id="vector2deg" name="vector2deg" style="width: auto; margin-bottom: 5%;"><span> degrees</span><br>
-        <input type="text" id="vector2dir1" name="vector2dir1" style="width: 25%; margin-bottom: 10%;"><span> of </span>
-        <input type="text" id="vector2dir2" name="vector2dir2" style="width: 25%; margin-bottom: 10%;"><br>
+      Important Equations <br>
+      V = V<sub>o</sub> + a*t <br>
+      Δx = V<sub>o</sub>*t + (1/2)*a*t<sup>2</sup> <br>
+      V<sup>2</sup> = V<sub>o</sub><sup>2</sup> + 2*a*Δx <br>
     </div>
   </div>
 
