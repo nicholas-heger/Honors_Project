@@ -23,7 +23,7 @@ body {font-size:16px;}
     <a href="Physics_Simulator_Solver.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
     <a href="Vectors.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Vectors</a> 
     <a href="1D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">1D Kinematics</a> 
-    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
+    <a href="2D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
     <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Energy</a>
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Momentum</a>
@@ -53,18 +53,18 @@ body {font-size:16px;}
   <div class="w3-row-padding">
     <div class="w3-half">
         <label for="v">Final Velocity (V)</label><br>
-        <input type="text" id="v" name="v" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+        <input type="text" id="v" name="v" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
         <label for="vo">Initial Velocity (V<sub>o</sub>)</label><br>
-        <input type="text" id="vo" name="vo" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+        <input type="text" id="vo" name="vo" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
         <label for="a">Acceleration (a)</label><br>
-        <input type="text" id="a" name="a" style="margin-bottom: 2%;"><span> m/s<sup>2</sup>, up</span><br>
+        <input type="text" id="a" name="a" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
         <label for="t">Time (t)</label><br>
-        <input type="text" id="t" name="t" style="margin-bottom: 2%;"><span> s</span><br>
+        <input type="text" id="t" name="t" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> s</span><br>
         <label for="x">Change in position (Δx)</label><br>
-        <input type="text" id="x" name="x" style="margin-bottom: 5%;"><span> m</span><br>
+        <input type="text" id="x" name="x" style="margin-bottom: 5%;" onchange="clearAnswers()"><span> m</span><br>
         <button onclick="calculate()" style="margin-bottom: 10%;">Calculate</button><br>
-        <label for="resultMag">The answer is</label><br>
-        <p id="resultMag" name="resultMag">0</p>
+        <p id="answer1" name="answer1"></p>
+        <p id="answer2" name="answer2"></p>
     </div>
 
     <div class="w3-half">
@@ -90,86 +90,95 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-function setBaseAngle(vectorAngle, dir) {
-  switch (dir) {
-      case "N":
-        vectorAngle = 90;
-        break;
-      case "W":
-        vectorAngle = 180;
-        break;
-      case "S":
-        vectorAngle = 270;
-        break;
-      default:
-        vectorAngle = 0;
+function printResults(pre, main, post) {
+  if (document.getElementById("answer1").innerText == ""){
+      document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
+    } else {
+      document.getElementById("answer2").innerText = pre + " = " + main.toFixed(2) + " " + post;
     }
-    return vectorAngle;
 }
 
-function isClockwise(dir1, dir2) {
-  if((dir1 == "N" && dir2 == "W") || (dir1 == "E" && dir2 == "N") || (dir1 == "S" && dir2 == "E") || (dir1 == "W" && dir2 == "S")) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function toRadians(degrees) {
-  var pi = Math.PI;
-  return degrees * (pi/180);
-}
-
-function toDegrees(radians) {
-  var pi = Math.PI;
-  return radians * (180/pi);
+function clearAnswers() {
+  document.getElementById("answer1").innerText = "";
+  document.getElementById("answer2").innerText = "";
 }
 
 // calculate() will calculate the resultant vector magnitude and direction
 function calculate() {
-    var vector1mag = parseFloat(document.getElementById("vector1mag").value);
-    var vector2mag = parseFloat(document.getElementById("vector2mag").value);
-    var vector1deg = parseFloat(document.getElementById("vector1deg").value);
-    var vector2deg = parseFloat(document.getElementById("vector2deg").value);
-    var vector1dir1 = document.getElementById("vector1dir1").value.toUpperCase();
-    var vector1dir2 = document.getElementById("vector1dir2").value.toUpperCase();
-    var vector2dir1 = document.getElementById("vector2dir1").value.toUpperCase();
-    var vector2dir2 = document.getElementById("vector2dir2").value.toUpperCase();
-    var vector1angle = 0.0;
-    var vector2angle = 0.0;
-    vector1angle = setBaseAngle(vector1angle, vector1dir2);
-    vector2angle = setBaseAngle(vector2angle, vector2dir2);
-    if (isClockwise(vector1dir1, vector1dir2)) {
-      vector1angle = vector1angle - vector1deg;
-    } else {
-      vector1angle = vector1angle + vector1deg;
-    }
-    if (isClockwise(vector2dir1, vector2dir2)) {
-      vector2angle = vector2angle - vector2deg;
-    } else {
-      vector2angle = vector2angle + vector2deg;
-    }
-    vector1angleRAD = toRadians(vector1angle);
-    vector2angleRAD = toRadians(vector2angle);
-    var x1 = Math.cos(vector1angleRAD)*vector1mag;
-    var y1 = Math.sin(vector1angleRAD)*vector1mag;
-    var x2 = Math.cos(vector2angleRAD)*vector2mag;
-    var y2 = Math.sin(vector2angleRAD)*vector2mag;
-    var rx = x1 + x2;
-    var ry = y1 + y2;
-    var rangleRAD = Math.atan(ry / rx);
-    var rangle = Math.abs(toDegrees(rangleRAD));
-    var rBaseDir = "E";
-    if (rx < 0) {
-      rBaseDir = "W";
-    }
-    var rNextDir = "N";
-    if (ry < 0) {
-      rNextDir = "S";
-    }
-    rmag = Math.sqrt(Math.pow(rx, 2) + Math.pow(ry, 2));
-    document.getElementById("resultMag").innerText = rmag.toFixed(2) + " (x and y components are " + rx.toFixed(2) + " and " + ry.toFixed(2) + ")";
-    document.getElementById("resultDir").innerText = rangle.toFixed(2) + "° " + rNextDir + " of " + rBaseDir;
+  if (document.getElementById("v").value != "" && document.getElementById("v").value != "?") {
+    var v = parseFloat(document.getElementById("v").value);
+  }
+  if (document.getElementById("vo").value != "" && document.getElementById("vo").value != "?") {
+    var vo = parseFloat(document.getElementById("vo").value);
+  }
+  if (document.getElementById("a").value != "" && document.getElementById("a").value != "?") {
+    var a = parseFloat(document.getElementById("a").value);
+  }
+  if (document.getElementById("t").value != "" && document.getElementById("t").value != "?") {
+    var t = parseFloat(document.getElementById("t").value);
+  }
+  if (document.getElementById("x").value != "" && document.getElementById("x").value != "?") {
+    var x = parseFloat(document.getElementById("x").value);
+  }
+
+  if (v == undefined && vo != undefined && a != undefined && t != undefined) {
+    v = vo+a*t;
+    printResults("v", v, "m/s");
+  } if (v != undefined && vo == undefined && a != undefined && t != undefined) {
+    vo = v-a*t;
+    printResults("vo", vo, "m/s");
+  } if (v != undefined && vo != undefined && a == undefined && t != undefined) {
+    a = (v-vo)/t;
+    printResults("a", a, "m/s^2");
+  } if (v != undefined && vo != undefined && a != undefined && t == undefined) {
+    t = (v-vo)/a;
+    printResults("t", t, "s");
+  } if (x == undefined && vo != undefined && t != undefined && a != undefined) {
+    x = vo*t+(a*Math.pow(t, 2))/2;
+    printResults("Δx", x, "m");
+  } if (x != undefined && vo == undefined && t != undefined && a != undefined) {
+    vo = (x-((a*Math.pow(t, 2))/2))/t;
+    printResults("vo", vo, "m/s");
+  } if (x != undefined && vo != undefined && t != undefined && a == undefined) {
+    a = (x-vo*t)*2/Math.pow(t, 2);
+    printResults("a", a, "m/s^2");
+  } if (v == undefined && vo != undefined && a != undefined && x != undefined) {
+    v = Math.sqrt(Math.pow(vo, 2)+2*a*x);
+    printResults("v", v, "m/s");
+  } if (v != undefined && vo == undefined && a != undefined && x != undefined) {
+    vo = Math.sqrt(Math.pow(v, 2)-2*a*x);
+    printResults("vo", vo, "m/s");
+  } if (v != undefined && vo != undefined && a == undefined && x != undefined) {
+    a = (Math.pow(v, 2)-Math.pow(vo, 2))/(2*x);
+    printResults("a", a, "m/s^2");
+  } if (v != undefined && vo != undefined && a != undefined && x == undefined) {
+    x = (Math.pow(v, 2)-Math.pow(vo, 2))/(2*a);
+    printResults("Δx", x, "m");
+  } if (v == undefined && vo != undefined && a != undefined && t != undefined) {
+    v = vo+a*t;
+    printResults("v", v, "m/s");
+  } if (v != undefined && vo == undefined && a != undefined && t != undefined) {
+    vo = v-a*t;
+    printResults("vo", vo, "m/s");
+  } if (v != undefined && vo != undefined && a == undefined && t != undefined) {
+    a = (v-vo)/t;
+    printResults("a", a, "m/s^2");
+  } if (v != undefined && vo != undefined && a != undefined && t == undefined) {
+    t = (v-vo)/a;
+    printResults("t", t, "s");
+  } if (x == undefined && vo != undefined && t != undefined && a != undefined) {
+    x = vo*t+(a*Math.pow(t, 2))/2;
+    printResults("Δx", x, "m");
+  } if (x != undefined && vo == undefined && t != undefined && a != undefined) {
+    vo = (x-((a*Math.pow(t, 2))/2))/t;
+    printResults("vo", vo, "m/s");
+  } if (x != undefined && vo != undefined && t != undefined && a == undefined) {
+    a = (x-vo*t)*2/Math.pow(t, 2);
+    printResults("a", a, "m/s^2");
+  }
+  
+  document.getElementById("resultMag").innerText = rmag.toFixed(2) + " (x and y components are " + rx.toFixed(2) + " and " + ry.toFixed(2) + ")";
+  document.getElementById("resultDir").innerText = rangle.toFixed(2) + "° " + rNextDir + " of " + rBaseDir;
 }
 </script>
 
