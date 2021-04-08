@@ -99,7 +99,7 @@ function clearAnswers() {
   document.getElementById("answer2").innerText = "";
 }
 
-// calculate() will calculate the resultant vector magnitude and direction
+// calculate() will calculate the missing one or two inputs
 function calculate() {
   var ball = document.getElementById("ball");
   var newball = ball.cloneNode(true);
@@ -178,9 +178,16 @@ function calculate() {
   }
   if (vo < 0) {
     document.getElementById("ball").className = "ball_down";
-  } else {
+  } else if (vo > 0) {
     document.getElementById("ball").className = "ball_up";
   }
+  setTimeout(function() {
+    if (v < 0) {
+      document.getElementById("ball").className = "ball_down";
+    } else if (v > 0) {
+      document.getElementById("ball").className = "ball_up";
+    }
+  }, 500);
 }
 </script>
 

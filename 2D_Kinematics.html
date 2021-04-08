@@ -46,30 +46,48 @@
   
   <!-- Inputs -->
   <div class="w3-row-padding">
-    <div class="w3-half">
-        <label for="v">Final Velocity (V)</label><br>
-        <input type="text" id="v" name="v" style="margin-bottom: 2%;"><span> m/s, up</span><br>
-        <label for="vo">Initial Velocity (V<sub>o</sub>)</label><br>
-        <input type="text" id="vo" name="vo" style="margin-bottom: 2%;"><span> m/s, up</span><br>
-        <label for="a">Acceleration (a)</label><br>
-        <input type="text" id="a" name="a" style="margin-bottom: 2%;"><span> m/s<sup>2</sup>, up</span><br>
+    <div class="w3-third">
+        <p>Y direction (vertical)</p>
+        <label for="vy">Final Velocity (V<sub>y</sub>)</label><br>
+        <input type="text" id="vy" name="vy" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+        <label for="voy">Initial Velocity (V<sub>oy</sub>)</label><br>
+        <input type="text" id="voy" name="voy" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+        <label for="ay">Acceleration (a<sub>y</sub>)</label><br>
+        <input type="text" id="ay" name="ay" style="margin-bottom: 2%;"><span> m/s<sup>2</sup>, up</span><br>
         <label for="t">Time (t)</label><br>
         <input type="text" id="t" name="t" style="margin-bottom: 2%;"><span> s</span><br>
-        <label for="x">Change in position (Δx)</label><br>
-        <input type="text" id="x" name="x" style="margin-bottom: 5%;"><span> m</span><br>
+        <label for="y">Change in position (Δy)</label><br>
+        <input type="text" id="y" name="y" style="margin-bottom: 5%;"><span> m</span><br>
         <button onclick="calculate()" style="margin-bottom: 10%;">Calculate</button><br>
         <label for="resultMag">The answer is</label><br>
         <p id="resultMag" name="resultMag">0</p>
     </div>
 
-    <div class="w3-half">
+    <div class="w3-third">
+      <p>X direction (horizontal)</p>
+      <label for="vx">Final Velocity (V<sub>x</sub>)</label><br>
+      <input type="text" id="vx" name="vx" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+      <label for="vox">Initial Velocity (V<sub>ox</sub>)</label><br>
+      <input type="text" id="vox" name="vox" style="margin-bottom: 2%;"><span> m/s, up</span><br>
+      <label for="ax">Acceleration (a<sub>x</sub>)</label><br>
+      <input type="text" id="ax" name="ax" style="margin-bottom: 2%;"><span> m/s<sup>2</sup>, up</span><br>
+      <label for="t">Time (t)</label><br>
+      <input type="text" id="t" name="t" style="margin-bottom: 2%;"><span> s</span><br>
+      <label for="x">Change in position (Δx)</label><br>
+      <input type="text" id="x" name="x" style="margin-bottom: 5%;"><span> m</span><br>
+      <button onclick="calculate()" style="margin-bottom: 10%;">Calculate</button><br>
+      <label for="resultMag">The answer is</label><br>
+      <p id="resultMag" name="resultMag">0</p>
+    </div>
+
+    <div class="w3-third">
       Important Equations <br>
-      V<sub>x</sub> = V<sub>ox</sub> + a<sub>x</sub>*t <br>
-      Δx = V<sub>ox</sub>*t + (1/2)*a<sub>x</sub>*t<sup>2</sup> <br>
-      V<sub>x</sub><sup>2</sup> = V<sub>ox</sub><sup>2</sup> + 2*a<sub>x</sub>*Δx <br>
       V<sub>y</sub> = V<sub>oy</sub> + a<sub>y</sub>*t <br>
       Δy = V<sub>oy</sub>*t + (1/2)*a<sub>y</sub>*t<sup>2</sup> <br>
       V<sub>y</sub><sup>2</sup> = V<sub>oy</sub><sup>2</sup> + 2*a<sub>y</sub>*Δy <br>
+      V<sub>x</sub> = V<sub>ox</sub> + a<sub>x</sub>*t <br>
+      Δx = V<sub>ox</sub>*t + (1/2)*a<sub>x</sub>*t<sup>2</sup> <br>
+      V<sub>x</sub><sup>2</sup> = V<sub>ox</sub><sup>2</sup> + 2*a<sub>x</sub>*Δx <br>
     </div>
   </div>
 
@@ -123,7 +141,7 @@ function toDegrees(radians) {
   return radians * (180/pi);
 }
 
-// calculate() will calculate the resultant vector magnitude and direction
+// calculate() will calculate the missing inputs
 function calculate() {
     var vector1mag = parseFloat(document.getElementById("vector1mag").value);
     var vector2mag = parseFloat(document.getElementById("vector2mag").value);
