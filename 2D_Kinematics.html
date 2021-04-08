@@ -5,12 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-</style>
+<link rel="stylesheet" href="Physics_Solver_Simulator.css">
 <body>
 
 <!-- Sidebar/menu -->
@@ -23,8 +18,8 @@ body {font-size:16px;}
     <a href="Physics_Simulator_Solver.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
     <a href="Vectors.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Vectors</a> 
     <a href="1D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">1D Kinematics</a> 
-    <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
-    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
+    <a href="2D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
+    <a href="Force.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Energy</a>
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Momentum</a>
   </div>
@@ -69,9 +64,12 @@ body {font-size:16px;}
 
     <div class="w3-half">
       Important Equations <br>
-      V = V<sub>o</sub> + a*t <br>
-      Δx = V<sub>o</sub>*t + (1/2)*a*t<sup>2</sup> <br>
-      V<sup>2</sup> = V<sub>o</sub><sup>2</sup> + 2*a*Δx <br>
+      V<sub>x</sub> = V<sub>ox</sub> + a<sub>x</sub>*t <br>
+      Δx = V<sub>ox</sub>*t + (1/2)*a<sub>x</sub>*t<sup>2</sup> <br>
+      V<sub>x</sub><sup>2</sup> = V<sub>ox</sub><sup>2</sup> + 2*a<sub>x</sub>*Δx <br>
+      V<sub>y</sub> = V<sub>oy</sub> + a<sub>y</sub>*t <br>
+      Δy = V<sub>oy</sub>*t + (1/2)*a<sub>y</sub>*t<sup>2</sup> <br>
+      V<sub>y</sub><sup>2</sup> = V<sub>oy</sub><sup>2</sup> + 2*a<sub>y</sub>*Δy <br>
     </div>
   </div>
 

@@ -1,0 +1,47 @@
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+.ball_initial {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    margin-top: 200px;
+}
+.ball_down {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: movedown 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball_up {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moveup 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes movedown {
+    0% {
+        transform: translate3d(0px, 0px, 0px);
+        animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    }
+    100% {
+        transform: translate3d(0px, 200px, 0px);
+        animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    }
+}
+@keyframes moveup {
+    0% {
+        transform: translate3d(0px, 200px, 0px);
+        animation-timing-function: cubic-bezier(0, 0.42, 1, 1);
+    }
+    100% {
+        transform: translate3d(0px, 0px, 0px);
+        animation-timing-function: cubic-bezier(0, 0.42, 1, 1);
+    }
+}

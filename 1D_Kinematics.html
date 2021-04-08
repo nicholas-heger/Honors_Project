@@ -5,12 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-</style>
+<link rel="stylesheet" href="Physics_Solver_Simulator.css">
 <body>
 
 <!-- Sidebar/menu -->
@@ -24,7 +19,7 @@ body {font-size:16px;}
     <a href="Vectors.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Vectors</a> 
     <a href="1D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">1D Kinematics</a> 
     <a href="2D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
-    <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
+    <a href="Force.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Energy</a>
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Momentum</a>
   </div>
@@ -62,7 +57,7 @@ body {font-size:16px;}
         <input type="text" id="t" name="t" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> s</span><br>
         <label for="x">Change in position (Δx)</label><br>
         <input type="text" id="x" name="x" style="margin-bottom: 5%;" onchange="clearAnswers()"><span> m</span><br>
-        <button onclick="calculate()" style="margin-bottom: 10%;">Calculate</button><br>
+        <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
         <p id="answer1" name="answer1"></p>
         <p id="answer2" name="answer2"></p>
     </div>
@@ -72,6 +67,7 @@ body {font-size:16px;}
       V = V<sub>o</sub> + a*t <br>
       Δx = V<sub>o</sub>*t + (1/2)*a*t<sup>2</sup> <br>
       V<sup>2</sup> = V<sub>o</sub><sup>2</sup> + 2*a*Δx <br>
+      <div id="ball" class="ball_initial"></div>
     </div>
   </div>
 
@@ -105,6 +101,10 @@ function clearAnswers() {
 
 // calculate() will calculate the resultant vector magnitude and direction
 function calculate() {
+  var ball = document.getElementById("ball");
+  var newball = ball.cloneNode(true);
+  ball.parentNode.replaceChild(newball, ball);
+  document.getElementById("ball").className = "ball_initial";
   if (document.getElementById("v").value != "" && document.getElementById("v").value != "?") {
     var v = parseFloat(document.getElementById("v").value);
   }
@@ -176,9 +176,11 @@ function calculate() {
     a = (x-vo*t)*2/Math.pow(t, 2);
     printResults("a", a, "m/s^2");
   }
-  
-  document.getElementById("resultMag").innerText = rmag.toFixed(2) + " (x and y components are " + rx.toFixed(2) + " and " + ry.toFixed(2) + ")";
-  document.getElementById("resultDir").innerText = rangle.toFixed(2) + "° " + rNextDir + " of " + rBaseDir;
+  if (vo < 0) {
+    document.getElementById("ball").className = "ball_down";
+  } else {
+    document.getElementById("ball").className = "ball_up";
+  }
 }
 </script>
 

@@ -40,34 +40,29 @@
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>Physics Solver/Simulator</b></h1>
-    <h1 class="w3-xxxlarge w3-text-red"><b>Select Unit</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Force</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
   
-  <!-- Photo grid (modal) -->
+  <!-- Inputs -->
   <div class="w3-row-padding">
     <div class="w3-half">
-      <img src="./vectors.png" style="width:100%" onclick="window.location.href = 'Vectors.html';" alt="Vectors">
-      <img src="./2D_kinematics.png" style="width:100%" onclick="window.location.href = '2D_Kinematics.html';" alt="Two Dimensional Kinematics">
-      <img src="./energy.png" style="width:100%" onclick="window.location.href = 'Physics_Simulator_Solver.html';" alt="Energy">
+        <label for="F">Force (F)</label><br>
+        <input type="text" id="F" name="F" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> N</span><br>
+        <label for="m">Mass (m)</label><br>
+        <input type="text" id="m" name="m" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="a">Acceleration (a)</label><br>
+        <input type="text" id="a" name="a" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
+        <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
+        <p id="answer1" name="answer1"></p>
     </div>
 
     <div class="w3-half">
-      <img src="./1D_kinematics.png" style="width:100%" onclick="window.location.href = '1D_Kinematics.html';" alt="One Dimensional Kinematics">
-      <img src="./force.png" style="width:100%" onclick="window.location.href = 'Force.html';" alt="Forces and Newton's Laws">
-      <img src="./momentum.png" style="width:100%" onclick="window.location.href = 'Physics_Simulator_Solver.html';" alt="Momentum">
+      Important Equations <br>
+      F = m*a <br>
+      <div id="ball" class="ball_initial"></div>
     </div>
   </div>
-
-  <!-- Modal for full size images on click-->
-  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-      <img id="img01" class="w3-image">
-      <p id="caption"></p>
-    </div>
-  </div>
-  
 
 <!-- End page content -->
 </div>
@@ -84,12 +79,50 @@ function w3_close() {
   document.getElementById("myOverlay").style.display = "none";
 }
 
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
+function printResults(pre, main, post) {
+  if (document.getElementById("answer1").innerText == ""){
+      document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
+    } else {
+      document.getElementById("answer2").innerText = pre + " = " + main.toFixed(2) + " " + post;
+    }
+}
+
+function clearAnswers() {
+  document.getElementById("answer1").innerText = "";
+  document.getElementById("answer2").innerText = "";
+}
+
+// calculate() will calculate the resultant vector magnitude and direction
+function calculate() {
+  var ball = document.getElementById("ball");
+  var newball = ball.cloneNode(true);
+  ball.parentNode.replaceChild(newball, ball);
+  document.getElementById("ball").className = "ball_initial";
+  if (document.getElementById("F").value != "" && document.getElementById("F").value != "?") {
+    var F = parseFloat(document.getElementById("F").value);
+  }
+  if (document.getElementById("m").value != "" && document.getElementById("m").value != "?") {
+    var m = parseFloat(document.getElementById("m").value);
+  }
+  if (document.getElementById("a").value != "" && document.getElementById("a").value != "?") {
+    var a = parseFloat(document.getElementById("a").value);
+  }
+
+  if (F == undefined && m != undefined && a != undefined) {
+    F = m*a;
+    printResults("F", F, "N");
+  } if (F != undefined && m == undefined && a != undefined) {
+    m = F/a;
+    printResults("m", m, "kg");
+  } if (F != undefined && m != undefined && a == undefined) {
+    a = F/m;
+    printResults("a", a, "m/s^2");
+  }
+  if (a < 0) {
+    document.getElementById("ball").className = "ball_down";
+  } else {
+    document.getElementById("ball").className = "ball_up";
+  }
 }
 </script>
 
