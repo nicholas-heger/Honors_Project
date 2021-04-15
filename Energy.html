@@ -42,33 +42,50 @@
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>Physics Solver/Simulator</b></h1>
-    <h1 class="w3-xxxlarge w3-text-red"><b>1D Kinematics</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Energy</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
   
   <!-- Inputs -->
   <div class="w3-row-padding">
-    <div class="w3-half">
-        <label for="v">Final Velocity (V)</label><br>
-        <input type="text" id="v" name="v" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
-        <label for="vo">Initial Velocity (V<sub>o</sub>)</label><br>
-        <input type="text" id="vo" name="vo" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
-        <label for="a">Acceleration (a)</label><br>
-        <input type="text" id="a" name="a" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
-        <label for="t">Time (t)</label><br>
-        <input type="text" id="t" name="t" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> s</span><br>
-        <label for="x">Change in position (Δx)</label><br>
-        <input type="text" id="x" name="x" style="margin-bottom: 5%;" onchange="clearAnswers()"><span> m</span><br>
+    <div class="w3-third">
+        <label for="mi">Initial Mass (m)</label><br>
+        <input type="text" id="mi" name="mi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
+        <label for="ai">Initial Acc from Gravity (g)</label><br>
+        <input type="text" id="ai" name="ai" value="-9.8" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
+        <label for="hi">Initial Height (h)</label><br>
+        <input type="text" id="hi" name="hi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
+        <label for="vi">Initial Velocity (v)</label><br>
+        <input type="text" id="vi" name="vi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> s</span><br>
         <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
         <p id="answer1" name="answer1"></p>
         <p id="answer2" name="answer2"></p>
     </div>
 
-    <div class="w3-half">
+    <div class="w3-third">
+        <label for="mf">Final Mass (m)</label><br>
+        <input type="text" id="mf" name="mf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
+        <label for="af">Final Acc from Gravity (g)</label><br>
+        <input type="text" id="af" name="af" value="-9.8" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
+        <label for="hf">Final Height (h)</label><br>
+        <input type="text" id="hf" name="hf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
+        <label for="vf">Final Velocity (v)</label><br>
+        <input type="text" id="vf" name="vf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> s</span><br>
+        <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
+        <p id="answer1" name="answer1"></p>
+        <p id="answer2" name="answer2"></p>
+    </div>
+
+    <div class="w3-third">
       Important Equations <br>
-      V = V<sub>o</sub> + a*t <br>
-      Δx = V<sub>o</sub>*t + (1/2)*a*t<sup>2</sup> <br>
-      V<sup>2</sup> = V<sub>o</sub><sup>2</sup> + 2*a*Δx <br>
+      E<sub>i</sub> = E<sub>f</sub> <br>
+      E = E<sub>p</sub> + E<sub>k</sub> <br><br>
+      Potential Energy <br>
+      E<sub>p</sub> = E<sub>g</sub> + E<sub>s</sub> <br>
+      E<sub>g</sub> = m*g*h <br>
+      E<sub>s</sub> = (1/2)*k*x<sup>2</sup> <br><br>
+      Kinetic Energy <br>
+      E<sub>k</sub> = (1/2)*m*v<sup>2</sup> <br>
       <div id="ball" class="ball_initial"></div>
     </div>
   </div>
