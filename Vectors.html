@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link rel="stylesheet" href="Physics_Solver_Simulator.css">
+<script src="https://unpkg.com/konva@7.2.5/konva.min.js"></script>
 <body>
 
 <!-- Sidebar/menu -->
@@ -64,6 +65,8 @@
 
     <div class="w3-third" style="text-align: center; font-size: 72pt;">
         +
+        <div style="margin-bottom: 20%"></div>
+        <div id="container"></div>
     </div>
 
     <div class="w3-third">
@@ -171,6 +174,64 @@ function calculate() {
     rmag = Math.sqrt(Math.pow(rx, 2) + Math.pow(ry, 2));
     document.getElementById("resultMag").innerText = rmag.toFixed(2) + " (x and y components are " + rx.toFixed(2) + " and " + ry.toFixed(2) + ")";
     document.getElementById("resultDir").innerText = rangle.toFixed(2) + "° " + rNextDir + " of " + rBaseDir;
+    
+    var rxString = rx.toString().replace('.', '');
+    rxString = '.' + rxString;
+    if (rxString.includes('-')) {
+      rxString = rxString.replace('-', '');
+      rxString = '-' + rxString;
+    }
+    newrx = parseFloat(rxString);
+
+    var ryString = ry.toString().replace('.', '');
+    ryString = '.' + ryString;
+    if (ryString.includes('-')) {
+      ryString = ryString.replace('-', '');
+      ryString = '-' + ryString;
+    }
+    newry = parseFloat(ryString);
+
+    var width = window.innerWidth / 4;
+    var height = window.innerHeight / 4;
+
+    var points = [0, height/2, width/2, 0];
+
+    if(newrx > 0 && newry > 0) {
+      points = [width*0.1, height*0.9, width*newrx, height-height*newry];
+    } else if (newrx > 0 && newry < 0) {
+      points = [width*0.1, height*0.1, width*newrx, height+height*newry];
+    } else if (newrx < 0 && newry > 0) {
+      points = [width*-1*newrx, height*0.9, width*0.1, height-height*newry];
+    } else if (newrx < 0 && newry < 0) {
+      points = [width*-1*newrx, height*0.1, width*0.1, height+height*newry];
+    }
+
+    var stage = new Konva.Stage({
+      container: 'container',
+      width: width,
+      height: height,
+    });
+
+    var layer = new Konva.Layer();
+
+
+
+    var arrow = new Konva.Arrow({
+      x: stage.width() / 10,
+      y: stage.height() / 10,
+      points: points,
+      pointerLength: 20,
+      pointerWidth: 20,
+      fill: 'black',
+      stroke: 'black',
+      strokeWidth: 4,
+    });
+
+    // add the shape to the layer
+    layer.add(arrow);
+
+    // add the layer to the stage
+    stage.add(layer);
 }
 </script>
 

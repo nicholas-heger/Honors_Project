@@ -18,7 +18,7 @@ The 2D Kinematics page works very similarly to the 1D Kinematics page. The 1D Ki
 The Force page is a simple page for calculating force, mass, or acceleration given the other two. Similarly to the other pages, enter what you know and leave the rest blank or enter a "?". Click calculate and the missing variable will be calculated for you. For more complex problems, you could use plug the acceleration you find from another page into this page if desired.
 
 ##### Energy
-Instructions for energy page
+The Energy page is another page in which you can enter values and it will calculate the result. On the energy page you can enter the initial and final mass, acceleration due to gravity, height, and velocity. The initial and final mass and acceleration due to gravity are almost always the same for these types of problems, and if the problem takes place on Earth, then the initial and final acceleration due to gravity is approxiately -9.8 m/s^2, which is already filled in for you, but can be changed should the problem take place on another planet. Simply enter the values you know and leave the one you don't blank (or enter a question mark) and click calculate to print the missing value.
 
 ##### Momentum
 Instructions for momentum page
