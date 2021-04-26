@@ -21,9 +21,9 @@
     <a href="2D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
     <a href="Force.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
     <a href="Energy.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Energy</a>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Momentum</a>
+    <a href="Momentum.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Momentum</a>
     <hr>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About</a>
+    <a href="About.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About</a>
   </div>
 </nav>
 
@@ -49,28 +49,23 @@
   <!-- Inputs -->
   <div class="w3-row-padding">
     <div class="w3-third">
-        <label for="mi">Initial Mass (m)</label><br>
-        <input type="text" id="mi" name="mi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
-        <label for="ai">Initial Acc from Gravity (g)</label><br>
-        <input type="text" id="ai" name="ai" value="-9.8" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
-        <label for="hi">Initial Height (h)</label><br>
-        <input type="text" id="hi" name="hi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
-        <label for="vi">Initial Velocity (v)</label><br>
-        <input type="text" id="vi" name="vi" style="margin-bottom: 3%;" onchange="clearAnswers()"><span> s</span><br>
-        <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
-        <p id="answer1" name="answer1"></p>
-        <p id="answer2" name="answer2"></p>
+      <label for="m">Mass (m)</label><br>
+      <input type="text" id="m" name="m" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+      <label for="g">Acceleration from Gravity (g)</label><br>
+      <input type="text" id="g" name="g" value="-9.8" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
+      <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
+      <p id="answer1" name="answer1"></p>
     </div>
 
     <div class="w3-third">
-        <label for="mf">Final Mass (m)</label><br>
-        <input type="text" id="mf" name="mf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
-        <label for="af">Final Acc from Gravity (g)</label><br>
-        <input type="text" id="af" name="af" value="-9.8" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s, up</span><br>
-        <label for="hf">Final Height (h)</label><br>
-        <input type="text" id="hf" name="hf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
-        <label for="vf">Final Velocity (v)</label><br>
-        <input type="text" id="vf" name="vf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> s</span><br>
+      <label for="hi">Initial Height (h<sub>i</sub>)</label><br>
+      <input type="text" id="hi" name="hi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m</span><br>
+      <label for="vi">Initial Velocity (v<sub>i</sub>)</label><br>
+      <input type="text" id="vi" name="vi" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
+      <label for="hf">Final Height (h<sub>f</sub>)</label><br>
+      <input type="text" id="hf" name="hf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m</span><br>
+      <label for="vf">Final Velocity (v<sub>f</sub>)</label><br>
+      <input type="text" id="vf" name="vf" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
     </div>
 
     <div class="w3-third">
@@ -83,7 +78,6 @@
       E<sub>s</sub> = (1/2)*k*x<sup>2</sup> <br><br>
       Kinetic Energy <br>
       E<sub>k</sub> = (1/2)*m*v<sup>2</sup> <br>
-      <div id="ball" class="ball_initial"></div>
     </div>
   </div>
 
@@ -103,109 +97,48 @@ function w3_close() {
 }
 
 function printResults(pre, main, post) {
-  if (document.getElementById("answer1").innerText == ""){
-      document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
-    } else {
-      document.getElementById("answer2").innerText = pre + " = " + main.toFixed(2) + " " + post;
-    }
+  document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
 }
 
 function clearAnswers() {
   document.getElementById("answer1").innerText = "";
-  document.getElementById("answer2").innerText = "";
 }
 
 // calculate() will calculate the missing one or two inputs
 function calculate() {
-  var ball = document.getElementById("ball");
-  var newball = ball.cloneNode(true);
-  ball.parentNode.replaceChild(newball, ball);
-  document.getElementById("ball").className = "ball_initial";
-  if (document.getElementById("v").value != "" && document.getElementById("v").value != "?") {
-    var v = parseFloat(document.getElementById("v").value);
+  if (document.getElementById("m").value != "" && document.getElementById("m").value != "?") {
+    var m = parseFloat(document.getElementById("m").value);
   }
-  if (document.getElementById("vo").value != "" && document.getElementById("vo").value != "?") {
-    var vo = parseFloat(document.getElementById("vo").value);
+  if (document.getElementById("g").value != "" && document.getElementById("g").value != "?") {
+    var g = parseFloat(document.getElementById("g").value);
+    g = Math.abs(g);
   }
-  if (document.getElementById("a").value != "" && document.getElementById("a").value != "?") {
-    var a = parseFloat(document.getElementById("a").value);
+  if (document.getElementById("hi").value != "" && document.getElementById("hi").value != "?") {
+    var hi = parseFloat(document.getElementById("hi").value);
   }
-  if (document.getElementById("t").value != "" && document.getElementById("t").value != "?") {
-    var t = parseFloat(document.getElementById("t").value);
+  if (document.getElementById("vi").value != "" && document.getElementById("vi").value != "?") {
+    var vi = parseFloat(document.getElementById("vi").value);
   }
-  if (document.getElementById("x").value != "" && document.getElementById("x").value != "?") {
-    var x = parseFloat(document.getElementById("x").value);
+  if (document.getElementById("hf").value != "" && document.getElementById("hf").value != "?") {
+    var hf = parseFloat(document.getElementById("hf").value);
+  }
+  if (document.getElementById("vf").value != "" && document.getElementById("vf").value != "?") {
+    var vf = parseFloat(document.getElementById("vf").value);
   }
 
-  if (v == undefined && vo != undefined && a != undefined && t != undefined) {
-    v = vo+a*t;
-    printResults("v", v, "m/s");
-  } if (v != undefined && vo == undefined && a != undefined && t != undefined) {
-    vo = v-a*t;
-    printResults("vo", vo, "m/s");
-  } if (v != undefined && vo != undefined && a == undefined && t != undefined) {
-    a = (v-vo)/t;
-    printResults("a", a, "m/s^2");
-  } if (v != undefined && vo != undefined && a != undefined && t == undefined) {
-    t = (v-vo)/a;
-    t = Math.abs(t);
-    printResults("t", t, "s");
-  } if (x == undefined && vo != undefined && t != undefined && a != undefined) {
-    x = vo*t+(a*Math.pow(t, 2))/2;
-    printResults("Δx", x, "m");
-  } if (x != undefined && vo == undefined && t != undefined && a != undefined) {
-    vo = (x-((a*Math.pow(t, 2))/2))/t;
-    printResults("vo", vo, "m/s");
-  } if (x != undefined && vo != undefined && t != undefined && a == undefined) {
-    a = (x-vo*t)*2/Math.pow(t, 2);
-    printResults("a", a, "m/s^2");
-  } if (v == undefined && vo != undefined && a != undefined && x != undefined) {
-    v = Math.sqrt(Math.pow(vo, 2)+2*a*x);
-    printResults("v", v, "m/s");
-  } if (v != undefined && vo == undefined && a != undefined && x != undefined) {
-    vo = Math.sqrt(Math.pow(v, 2)-2*a*x);
-    printResults("vo", vo, "m/s");
-  } if (v != undefined && vo != undefined && a == undefined && x != undefined) {
-    a = (Math.pow(v, 2)-Math.pow(vo, 2))/(2*x);
-    printResults("a", a, "m/s^2");
-  } if (v != undefined && vo != undefined && a != undefined && x == undefined) {
-    x = (Math.pow(v, 2)-Math.pow(vo, 2))/(2*a);
-    printResults("Δx", x, "m");
-  } if (v == undefined && vo != undefined && a != undefined && t != undefined) {
-    v = vo+a*t;
-    printResults("v", v, "m/s");
-  } if (v != undefined && vo == undefined && a != undefined && t != undefined) {
-    vo = v-a*t;
-    printResults("vo", vo, "m/s");
-  } if (v != undefined && vo != undefined && a == undefined && t != undefined) {
-    a = (v-vo)/t;
-    printResults("a", a, "m/s^2");
-  } if (v != undefined && vo != undefined && a != undefined && t == undefined) {
-    t = (v-vo)/a;
-    t = Math.abs(t);
-    printResults("t", t, "s");
-  } if (x == undefined && vo != undefined && t != undefined && a != undefined) {
-    x = vo*t+(a*Math.pow(t, 2))/2;
-    printResults("Δx", x, "m");
-  } if (x != undefined && vo == undefined && t != undefined && a != undefined) {
-    vo = (x-((a*Math.pow(t, 2))/2))/t;
-    printResults("vo", vo, "m/s");
-  } if (x != undefined && vo != undefined && t != undefined && a == undefined) {
-    a = (x-vo*t)*2/Math.pow(t, 2);
-    printResults("a", a, "m/s^2");
+  if (hi == undefined && vi != undefined && hf != undefined && vf != undefined) {
+    hi = ((m*g*hf + 0.5*m*Math.pow(vf, 2))-0.5*m*Math.pow(vi, 2))/(m*g);
+    printResults("hi", hi, "m");
+  } else if (hi != undefined && vi == undefined && hf != undefined && vf != undefined) {
+    vi = Math.sqrt(Math.abs(((m*g*hf + 0.5*m*Math.pow(vf, 2))-m*g*hi)/(0.5*m)));
+    printResults("vi", vi, "m/s");
+  } else if (hi != undefined && vi != undefined && hf == undefined && vf != undefined) {
+    hf = ((m*g*hi + 0.5*m*Math.pow(vi, 2))-0.5*m*Math.pow(vf, 2))/(m*g);
+    printResults("hf", hf, "m");
+  } else if (hi != undefined && vi != undefined && hf != undefined && vf == undefined) {
+    vf = Math.sqrt(Math.abs(((m*g*hi + 0.5*m*Math.pow(vi, 2))-m*g*hf)/(0.5*m)));
+    printResults("vf", vf, "m/s");
   }
-  if (vo < 0) {
-    document.getElementById("ball").className = "ball_down";
-  } else if (vo > 0) {
-    document.getElementById("ball").className = "ball_up";
-  }
-  setTimeout(function() {
-    if (v < 0) {
-      document.getElementById("ball").className = "ball_down";
-    } else if (v > 0) {
-      document.getElementById("ball").className = "ball_up";
-    }
-  }, 500);
 }
 </script>
 

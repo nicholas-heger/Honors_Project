@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Physics Solver/Simulator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="Physics_Solver_Simulator.css">
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>Pages</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="Physics_Simulator_Solver.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="Vectors.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Vectors</a> 
+    <a href="1D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">1D Kinematics</a> 
+    <a href="2D_Kinematics.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">2D Kinematics</a> 
+    <a href="Force.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Force</a> 
+    <a href="Energy.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Energy</a>
+    <a href="Momentum.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Momentum</a>
+    <hr>
+    <a href="About.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Pages</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-jumbo"><b>Physics Solver/Simulator</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>About</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+  </div>
+  
+  <!-- Inputs -->
+  <div class="w3-row-padding">
+    <p>
+        <h1>Honors Project</h1>
+        Physics Solver/Simulator - Honors Project Spring 2021 - Nicholas Heger<br>
+
+        <h3>User Manual</h3>
+        <h5>Home Page</h5>
+        Upon opening this application you will be greeted with the home page. This page serves as a way to navigate to the other pages on this site, which can be done through the sidebar or by clicking on the respective module's image.<br>
+
+        <h5>Vectors</h5>
+        The Vectors page allows you to add vectors. Start by entering the magnitude (the units do not matter) and the direction or each of the two vectors. To enter the direction, first enter the angle of the vector (in degrees), then indicate which direction that angle is pointing by entering cardinal directions in the two boxes below (e.g. N of E for a direction that is North of East). Once both vectors are entered, click the calculate button to view the resultant vector's magnitude and direction. The x and y component vectors of the resultant vector are also displayed in parenthesis after the magnitude of the resultant vector.<br>
+
+        <h5>1D Kinematics</h5>
+        The 1D Kinematics page can be used to calculate the final velocity, initial velocity, acceleration, time, of change in position of an object moving in one dimension. Helpful equations are displayed to the right for you own use. Fill in the boxes for the variables you know and simply leave the rest blank or enter a "?". You should always know at least three of the inputs. If not, then there is not enough information to solve the problem and this page will not work as expected. For example if the problem is to find the time it takes for a rock to fall 2 meters from rest, you should enter 0 for the initial velocity, -9.8 for the acceleration, and -2 for the change in position.<br>
+
+        <h5>2D Kinematics</h5>
+        The 2D Kinematics page works very similarly to the 1D Kinematics page. The 1D Kinematics equations are expanded to the 2D equations, and there are now two columns to enter information. Fill in the information you are given about the problem and either leave the rest blank or use "?". When done use the calculate button below to find the values you are missing.<br>
+
+        <h5>Force</h5>
+        The Force page is a simple page for calculating force, mass, or acceleration given the other two. Similarly to the other pages, enter what you know and leave the rest blank or enter a "?". Click calculate and the missing variable will be calculated for you. For more complex problems, you could use plug the acceleration you find from another page into this page if desired.<br>
+
+        <h5>Energy</h5>
+        The Energy page is another page in which you can enter values and it will calculate the result. On the energy page you can enter the mass, acceleration due to gravity, and initial and final height and velocity. The initial and final mass and acceleration due to gravity are typically the same for these types of problems, so there is a single required input for both of those. Additionally, if the problem takes place on Earth, then the initial and final acceleration due to gravity is approxiately -9.8 m/s^2, which is already filled in for you, but can be changed should the problem take place on another planet. Simply enter the values you know and leave the one you don't blank (or enter a question mark) and click calculate to print the missing value.<br>
+
+        <h5>Momentum</h5>
+        The Momentum, similar to most of the other pages, allows you to enter the known values and it will calculate the unknown value. It allows inputs for initial and final masses and velocities of two objects undergoing a collision. This page is currently set up for elastic collisions, but may be expanded to inelastic collisions at a future date.<br>
+
+        <h3>Authors and Acknowledgement</h3>
+        This physics solver/simulator was created by Nicholas Heger. The home page graphics were created by Bethany Trang.
+    </p>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

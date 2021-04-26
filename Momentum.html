@@ -42,27 +42,42 @@
   <!-- Header -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
     <h1 class="w3-jumbo"><b>Physics Solver/Simulator</b></h1>
-    <h1 class="w3-xxxlarge w3-text-red"><b>Force</b></h1>
+    <h1 class="w3-xxxlarge w3-text-red"><b>Momentum</b></h1>
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
   
   <!-- Inputs -->
   <div class="w3-row-padding">
-    <div class="w3-half">
-        <label for="F">Force (F)</label><br>
-        <input type="text" id="F" name="F" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> N</span><br>
-        <label for="m">Mass (m)</label><br>
-        <input type="text" id="m" name="m" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
-        <label for="a">Acceleration (a)</label><br>
-        <input type="text" id="a" name="a" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s<sup>2</sup>, up</span><br>
+    <div class="w3-third">
+        <p>Initial</p>
+        <label for="m1">Mass 1 (m1i)</label><br>
+        <input type="text" id="m1" name="m1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v1">Velocity 1 (v1i)</label><br>
+        <input type="text" id="v1" name="v1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
+        <label for="m2">Mass 2 (m2i)</label><br>
+        <input type="text" id="m2" name="m2" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v3">Velocity 2 (v2i)</label><br>
+        <input type="text" id="v2" name="v2" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s</span><br>
         <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
         <p id="answer1" name="answer1"></p>
     </div>
 
-    <div class="w3-half">
+    <div class="w3-third">
+        <p>Final</p>
+        <label for="m1">Mass 1 (m1f)</label><br>
+        <input type="text" id="m1" name="m1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v1">Velocity 1 (v1f)</label><br>
+        <input type="text" id="v1" name="v1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
+        <label for="m2">Mass 2 (m2f)</label><br>
+        <input type="text" id="m2" name="m2" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v3">Velocity 2 (v2f)</label><br>
+        <input type="text" id="v2" name="v2" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s</span><br>
+    </div>
+
+    <div class="w3-third">
       Important Equations <br>
-      F = m*a <br>
-      <div id="ball" class="ball_initial"></div>
+      p<sub>i</sub> = p<sub>f</sub> <br>
+      p = mv <br>
     </div>
   </div>
 
@@ -82,48 +97,47 @@ function w3_close() {
 }
 
 function printResults(pre, main, post) {
-  if (document.getElementById("answer1").innerText == ""){
-      document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
-    } else {
-      document.getElementById("answer2").innerText = pre + " = " + main.toFixed(2) + " " + post;
-    }
+  document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
 }
 
 function clearAnswers() {
   document.getElementById("answer1").innerText = "";
-  document.getElementById("answer2").innerText = "";
 }
 
-// calculate() will calculate the resultant vector magnitude and direction
+// calculate() will calculate the missing one or two inputs
 function calculate() {
-  var ball = document.getElementById("ball");
-  var newball = ball.cloneNode(true);
-  ball.parentNode.replaceChild(newball, ball);
-  document.getElementById("ball").className = "ball_initial";
-  if (document.getElementById("F").value != "" && document.getElementById("F").value != "?") {
-    var F = parseFloat(document.getElementById("F").value);
-  }
   if (document.getElementById("m").value != "" && document.getElementById("m").value != "?") {
     var m = parseFloat(document.getElementById("m").value);
   }
-  if (document.getElementById("a").value != "" && document.getElementById("a").value != "?") {
-    var a = parseFloat(document.getElementById("a").value);
+  if (document.getElementById("g").value != "" && document.getElementById("g").value != "?") {
+    var g = parseFloat(document.getElementById("g").value);
+    g = Math.abs(g);
+  }
+  if (document.getElementById("hi").value != "" && document.getElementById("hi").value != "?") {
+    var hi = parseFloat(document.getElementById("hi").value);
+  }
+  if (document.getElementById("vi").value != "" && document.getElementById("vi").value != "?") {
+    var vi = parseFloat(document.getElementById("vi").value);
+  }
+  if (document.getElementById("hf").value != "" && document.getElementById("hf").value != "?") {
+    var hf = parseFloat(document.getElementById("hf").value);
+  }
+  if (document.getElementById("vf").value != "" && document.getElementById("vf").value != "?") {
+    var vf = parseFloat(document.getElementById("vf").value);
   }
 
-  if (F == undefined && m != undefined && a != undefined) {
-    F = m*a;
-    printResults("F", F, "N");
-  } if (F != undefined && m == undefined && a != undefined) {
-    m = F/a;
-    printResults("m", m, "kg");
-  } if (F != undefined && m != undefined && a == undefined) {
-    a = F/m;
-    printResults("a", a, "m/s^2");
-  }
-  if (a < 0) {
-    document.getElementById("ball").className = "ball_down";
-  } else {
-    document.getElementById("ball").className = "ball_up";
+  if (hi == undefined && vi != undefined && hf != undefined && vf != undefined) {
+    hi = ((m*g*hf + 0.5*m*Math.pow(vf, 2))-0.5*m*Math.pow(vi, 2))/(m*g);
+    printResults("hi", hi, "m");
+  } else if (hi != undefined && vi == undefined && hf != undefined && vf != undefined) {
+    vi = Math.sqrt(Math.abs(((m*g*hf + 0.5*m*Math.pow(vf, 2))-m*g*hi)/(0.5*m)));
+    printResults("vi", vi, "m/s");
+  } else if (hi != undefined && vi != undefined && hf == undefined && vf != undefined) {
+    hf = ((m*g*hi + 0.5*m*Math.pow(vi, 2))-0.5*m*Math.pow(vf, 2))/(m*g);
+    printResults("hf", hf, "m");
+  } else if (hi != undefined && vi != undefined && hf != undefined && vf == undefined) {
+    vf = Math.sqrt(Math.abs(((m*g*hi + 0.5*m*Math.pow(vi, 2))-m*g*hf)/(0.5*m)));
+    printResults("vf", vf, "m/s");
   }
 }
 </script>
