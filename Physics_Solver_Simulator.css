@@ -45,3 +45,183 @@ body {font-size:16px;}
         animation-timing-function: cubic-bezier(0, 0.42, 1, 1);
     }
 }
+.cube_initial {
+    width: 50px;
+    height: 50px;
+    background-color: #f44336;
+    margin-top: 100px;
+}
+.cube_right {
+    width: 50px;
+    height: 50px;
+    background-color: #f44336;
+    animation: moveright 0.5s;
+    animation-fill-mode: forwards;
+}
+.cube_left {
+    width: 50px;
+    height: 50px;
+    background-color: #f44336;
+    animation: moveleft 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes moveright {
+    0% {
+        transform: translate3d(0px, 100px, 0px);
+    }
+    100% {
+        transform: translate3d(200px, 100px, 0px);
+    }
+}
+@keyframes moveleft {
+    0% {
+        transform: translate3d(200px, 100px, 0px);
+    }
+    100% {
+        transform: translate3d(0px, 100px, 0px);
+    }
+}
+.ball1_initial {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    margin-top: 100px;
+    margin-left: 0px;
+}
+.ball1_right_short {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moverightshort 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball1_right_long {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moverightlong 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball1_left_short {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moveleftfromshort 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball1_left_long {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moveleftfromlong 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes moverightshort {
+    0% {
+        transform: translate3d(0px, 100px, 0px);
+    }
+    100% {
+        transform: translate3d(75px, 100px, 0px);
+    }
+}
+@keyframes moverightlong {
+    0% {
+        transform: translate3d(0px, 100px, 0px);
+    }
+    100% {
+        transform: translate3d(175px, 100px, 0px);
+    }
+}
+@keyframes moveleftfromshort {
+    0% {
+        transform: translate3d(75px, 100px, 0px);
+    }
+    100% {
+        transform: translate3d(0px, 100px, 0px);
+    }
+}
+@keyframes moveleftfromlong {
+    0% {
+        transform: translate3d(175px, 100px, 0px);
+    }
+    100% {
+        transform: translate3d(0px, 100px, 0px);
+    }
+}
+.ball2_initial {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    margin-top: -50px;
+    margin-left: 200px;
+}
+.ball2_left_short {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moveleftshort 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball2_left_long {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moveleftlong 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball2_right_short {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moverightfromshort 0.5s;
+    animation-fill-mode: forwards;
+}
+.ball2_right_long {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f44336;
+    animation: moverightfromlong 0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes moveleftshort {
+    0% {
+        transform: translate3d(200px, 50px, 0px);
+    }
+    100% {
+        transform: translate3d(125px, 50px, 0px);
+    }
+}
+@keyframes moveleftlong {
+    0% {
+        transform: translate3d(200px, -50px, 0px);
+    }
+    100% {
+        transform: translate3d(50px, -50px, 0px);
+    }
+}
+@keyframes moverightfromshort {
+    0% {
+        transform: translate3d(125px, 50px, 0px);
+    }
+    100% {
+        transform: translate3d(200px, 50px, 0px);
+    }
+}
+@keyframes moverightfromlong {
+    0% {
+        transform: translate3d(25px, 50px, 0px);
+    }
+    100% {
+        transform: translate3d(200px, 50px, 0px);
+    }
+}

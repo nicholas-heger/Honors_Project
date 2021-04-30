@@ -50,34 +50,36 @@
   <div class="w3-row-padding">
     <div class="w3-third">
         <p>Initial</p>
-        <label for="m1">Mass 1 (m1i)</label><br>
-        <input type="text" id="m1" name="m1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
-        <label for="v1">Velocity 1 (v1i)</label><br>
-        <input type="text" id="v1" name="v1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
-        <label for="m2">Mass 2 (m2i)</label><br>
-        <input type="text" id="m2" name="m2" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
-        <label for="v3">Velocity 2 (v2i)</label><br>
-        <input type="text" id="v2" name="v2" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s</span><br>
+        <label for="m1i">Mass 1 (m1i)</label><br>
+        <input type="text" id="m1i" name="m1i" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v1i">Velocity 1 (v1i)</label><br>
+        <input type="text" id="v1i" name="v1i" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
+        <label for="m2i">Mass 2 (m2i)</label><br>
+        <input type="text" id="m2i" name="m2i" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v3i">Velocity 2 (v2i)</label><br>
+        <input type="text" id="v2i" name="v2i" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s</span><br>
         <button onclick="calculate()" style="margin-bottom: 7.5%;">Calculate</button><br>
         <p id="answer1" name="answer1"></p>
     </div>
 
     <div class="w3-third">
         <p>Final</p>
-        <label for="m1">Mass 1 (m1f)</label><br>
-        <input type="text" id="m1" name="m1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
-        <label for="v1">Velocity 1 (v1f)</label><br>
-        <input type="text" id="v1" name="v1" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
-        <label for="m2">Mass 2 (m2f)</label><br>
-        <input type="text" id="m2" name="m2" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
-        <label for="v3">Velocity 2 (v2f)</label><br>
-        <input type="text" id="v2" name="v2" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s</span><br>
+        <label for="m1f">Mass 1 (m1f)</label><br>
+        <input type="text" id="m1f" name="m1f" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v1f">Velocity 1 (v1f)</label><br>
+        <input type="text" id="v1f" name="v1f" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> m/s</span><br>
+        <label for="m2f">Mass 2 (m2f)</label><br>
+        <input type="text" id="m2f" name="m2f" style="margin-bottom: 2%;" onchange="clearAnswers()"><span> kg</span><br>
+        <label for="v3f">Velocity 2 (v2f)</label><br>
+        <input type="text" id="v2f" name="v2f" style="margin-bottom: 4%;" onchange="clearAnswers()"><span> m/s</span><br>
     </div>
 
     <div class="w3-third">
       Important Equations <br>
       p<sub>i</sub> = p<sub>f</sub> <br>
       p = mv <br>
+      <div id="ball1" class="ball1_initial"></div>
+      <div id="ball2" class="ball2_initial"></div>
     </div>
   </div>
 
@@ -106,38 +108,101 @@ function clearAnswers() {
 
 // calculate() will calculate the missing one or two inputs
 function calculate() {
-  if (document.getElementById("m").value != "" && document.getElementById("m").value != "?") {
-    var m = parseFloat(document.getElementById("m").value);
+  var ball1 = document.getElementById("ball1");
+  var newball1 = ball1.cloneNode(true);
+  ball1.parentNode.replaceChild(newball1, ball1);
+  document.getElementById("ball1").className = "ball1_initial";
+  var ball2 = document.getElementById("ball2");
+  var newball2 = ball2.cloneNode(true);
+  ball2.parentNode.replaceChild(newball2, ball2);
+  document.getElementById("ball2").className = "ball2_initial";
+  if (document.getElementById("m1i").value != "" && document.getElementById("m1i").value != "?") {
+    var m1i = parseFloat(document.getElementById("m1i").value);
   }
-  if (document.getElementById("g").value != "" && document.getElementById("g").value != "?") {
-    var g = parseFloat(document.getElementById("g").value);
-    g = Math.abs(g);
+  if (document.getElementById("v1i").value != "" && document.getElementById("v1i").value != "?") {
+    var v1i = parseFloat(document.getElementById("v1i").value);
   }
-  if (document.getElementById("hi").value != "" && document.getElementById("hi").value != "?") {
-    var hi = parseFloat(document.getElementById("hi").value);
+  if (document.getElementById("m2i").value != "" && document.getElementById("m2i").value != "?") {
+    var m2i = parseFloat(document.getElementById("m2i").value);
   }
-  if (document.getElementById("vi").value != "" && document.getElementById("vi").value != "?") {
-    var vi = parseFloat(document.getElementById("vi").value);
+  if (document.getElementById("v2i").value != "" && document.getElementById("v2i").value != "?") {
+    var v2i = parseFloat(document.getElementById("v2i").value);
   }
-  if (document.getElementById("hf").value != "" && document.getElementById("hf").value != "?") {
-    var hf = parseFloat(document.getElementById("hf").value);
+  if (document.getElementById("m1f").value != "" && document.getElementById("m1f").value != "?") {
+    var m1f = parseFloat(document.getElementById("m1f").value);
   }
-  if (document.getElementById("vf").value != "" && document.getElementById("vf").value != "?") {
-    var vf = parseFloat(document.getElementById("vf").value);
+  if (document.getElementById("v1f").value != "" && document.getElementById("v1f").value != "?") {
+    var v1f = parseFloat(document.getElementById("v1f").value);
   }
-
-  if (hi == undefined && vi != undefined && hf != undefined && vf != undefined) {
-    hi = ((m*g*hf + 0.5*m*Math.pow(vf, 2))-0.5*m*Math.pow(vi, 2))/(m*g);
-    printResults("hi", hi, "m");
-  } else if (hi != undefined && vi == undefined && hf != undefined && vf != undefined) {
-    vi = Math.sqrt(Math.abs(((m*g*hf + 0.5*m*Math.pow(vf, 2))-m*g*hi)/(0.5*m)));
-    printResults("vi", vi, "m/s");
-  } else if (hi != undefined && vi != undefined && hf == undefined && vf != undefined) {
-    hf = ((m*g*hi + 0.5*m*Math.pow(vi, 2))-0.5*m*Math.pow(vf, 2))/(m*g);
-    printResults("hf", hf, "m");
-  } else if (hi != undefined && vi != undefined && hf != undefined && vf == undefined) {
-    vf = Math.sqrt(Math.abs(((m*g*hi + 0.5*m*Math.pow(vi, 2))-m*g*hf)/(0.5*m)));
-    printResults("vf", vf, "m/s");
+  if (document.getElementById("m2f").value != "" && document.getElementById("m2f").value != "?") {
+    var m2f = parseFloat(document.getElementById("m2f").value);
+  }
+  if (document.getElementById("v2f").value != "" && document.getElementById("v2f").value != "?") {
+    var v2f = parseFloat(document.getElementById("v2f").value);
+  }
+  
+  if (m1i == undefined && v1i != undefined && m2i != undefined && v2i != undefined && m1f != undefined && v1f != undefined && m2f != undefined && v2f != undefined) {
+    m1i = ((m1f*v1f+m2f*v2f)-(m2i*v2i))/v1i;
+    printResults("m1i", m1i, "kg");
+  } else if (m1i != undefined && v1i == undefined && m2i != undefined && v2i != undefined && m1f != undefined && v1f != undefined && m2f != undefined && v2f != undefined) {
+    v1i = ((m1f*v1f+m2f*v2f)-(m2i*v2i))/m1i;
+    printResults("v1i", v1i, "m/s");
+  } else if (m1i != undefined && v1i != undefined && m2i == undefined && v2i != undefined && m1f != undefined && v1f != undefined && m2f != undefined && v2f != undefined) {
+    m2i = ((m1f*v1f+m2f*v2f)-(m1i*v1i))/v2i;
+    printResults("m2i", m2i, "kg");
+  } else if (m1i != undefined && v1i != undefined && m2i != undefined && v2i == undefined && m1f != undefined && v1f != undefined && m2f != undefined && v2f != undefined) {
+    v2i = ((m1f*v1f+m2f*v2f)-(m1i*v1i))/m2i;
+    printResults("v2i", v2i, "m/s");
+  } else if (m1i != undefined && v1i != undefined && m2i != undefined && v2i != undefined && m1f == undefined && v1f != undefined && m2f != undefined && v2f != undefined) {
+    m1f = ((m1i*v1i+m2i*v2i)-(m2f*v2f))/v1f;
+    printResults("m1f", m1f, "kg");
+  } else if (m1i != undefined && v1i != undefined && m2i != undefined && v2i != undefined && m1f != undefined && v1f == undefined && m2f != undefined && v2f != undefined) {
+    v1f = ((m1i*v1i+m2i*v2i)-(m2f*v2f))/m1f;
+    printResults("v1f", v1f, "m/s");
+  } else if (m1i != undefined && v1i != undefined && m2i != undefined && v2i != undefined && m1f != undefined && v1f != undefined && m2f == undefined && v2f != undefined) {
+    m2f = ((m1i*v1i+m2i*v2i)-(m1f*v1f))/v2f;
+    printResults("m2f", m2f, "kg");
+  } else if (m1i != undefined && v1i != undefined && m2i != undefined && v2i != undefined && m1f != undefined && v1f != undefined && m2f != undefined && v2f == undefined) {
+    v2f = ((m1i*v1i+m2i*v2i)-(m1f*v1f))/m2f;
+    printResults("v2f", v2f, "m/s");
+  }
+  if (v1i > 0 && v2i < 0) {
+    document.getElementById("ball1").className = "ball1_right_short";
+    document.getElementById("ball2").className = "ball2_left_short";
+    setTimeout(function() {
+      if (v1f < 0 && v2f > 0) {
+        document.getElementById("ball1").className = "ball1_left_short";
+        document.getElementById("ball2").className = "ball2_right_short";
+      } else if (v1f < 0 && v2f == 0) {
+        document.getElementById("ball1").className = "ball1_left_short";
+      } else if (v1f == 0 && v2f > 0) {
+        document.getElementById("ball2").className = "ball2_right_short";
+      }
+    }, 500);
+  } else if (v1i > 0 && v2i == 0) {
+    document.getElementById("ball1").className = "ball1_right_long";
+    setTimeout(function() {
+      if (v1f < 0 && v2f > 0) {
+        document.getElementById("ball1").className = "ball1_left_long";
+        // document.getElementById("ball2").className = "ball2_left_short";
+      } else if (v1f < 0 && v2f == 0) {
+        document.getElementById("ball1").className = "ball1_left_long";
+      } else if (v1f == 0 && v2f > 0) {
+        // document.getElementById("ball2").className = "ball2_left_long";
+      }
+    }, 500);
+  } else if (v1i == 0 && v2i < 0) {
+    document.getElementById("ball2").className = "ball2_left_long";
+    setTimeout(function() {
+      if (v1f < 0 && v2f > 0) {
+        // document.getElementById("ball1").className = "ball1_right_short";
+        document.getElementById("ball2").className = "ball2_right_long";
+      } else if (v1f < 0 && v2f == 0) {
+        // document.getElementById("ball1").className = "ball1_right_long";
+      } else if (v1f == 0 && v2f > 0) {
+        document.getElementById("ball2").className = "ball2_right_long";
+      }
+    }, 500);
   }
 }
 </script>

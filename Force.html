@@ -62,7 +62,7 @@
     <div class="w3-half">
       Important Equations <br>
       F = m*a <br>
-      <div id="ball" class="ball_initial"></div>
+      <div id="cube" class="cube_initial"></div>
     </div>
   </div>
 
@@ -82,24 +82,21 @@ function w3_close() {
 }
 
 function printResults(pre, main, post) {
-  if (document.getElementById("answer1").innerText == ""){
-      document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
-    } else {
-      document.getElementById("answer2").innerText = pre + " = " + main.toFixed(2) + " " + post;
-    }
+  if (document.getElementById("answer1").innerText == "") {
+    document.getElementById("answer1").innerText = pre + " = " + main.toFixed(2) + " " + post;
+  }
 }
 
 function clearAnswers() {
   document.getElementById("answer1").innerText = "";
-  document.getElementById("answer2").innerText = "";
 }
 
 // calculate() will calculate the resultant vector magnitude and direction
 function calculate() {
-  var ball = document.getElementById("ball");
-  var newball = ball.cloneNode(true);
-  ball.parentNode.replaceChild(newball, ball);
-  document.getElementById("ball").className = "ball_initial";
+  var cube = document.getElementById("cube");
+  var newcube = cube.cloneNode(true);
+  cube.parentNode.replaceChild(newcube, cube);
+  document.getElementById("cube").className = "cube_initial";
   if (document.getElementById("F").value != "" && document.getElementById("F").value != "?") {
     var F = parseFloat(document.getElementById("F").value);
   }
@@ -120,10 +117,10 @@ function calculate() {
     a = F/m;
     printResults("a", a, "m/s^2");
   }
-  if (a < 0) {
-    document.getElementById("ball").className = "ball_down";
-  } else {
-    document.getElementById("ball").className = "ball_up";
+  if (a > 0) {
+    document.getElementById("cube").className = "cube_right";
+  } else if (a < 0) {
+    document.getElementById("cube").className = "cube_left";
   }
 }
 </script>
