@@ -2,6 +2,13 @@
 Physics Solver/Simulator - Honors Project Spring 2021 - Nicholas Heger
 
 ### User Manual
+##### How to start using the Physics Solver/Simulator
+1. Navigate to https://github.com/hegerni/Honors_Project
+2. Click the green "Code" button
+3. Select "Download ZIP"
+4. Extract all from the ZIP folder and store the files wherever you want to store the application.
+5. To open the app, simply open the file with the .html extension titled "Physics_Simulator_Solver".
+
 ##### Home Page
 Upon opening this application you will be greeted with the home page. This page serves as a way to navigate to the other pages on this site, which can be done through the sidebar or by clicking on the respective module's image.
 

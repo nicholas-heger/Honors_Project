@@ -175,35 +175,22 @@ function calculate() {
     document.getElementById("resultMag").innerText = rmag.toFixed(2) + " (x and y components are " + rx.toFixed(2) + " and " + ry.toFixed(2) + ")";
     document.getElementById("resultDir").innerText = rangle.toFixed(2) + "° " + rNextDir + " of " + rBaseDir;
     
-    var rxString = rx.toString().replace('.', '');
-    rxString = '.' + rxString;
-    if (rxString.includes('-')) {
-      rxString = rxString.replace('-', '');
-      rxString = '-' + rxString;
-    }
-    newrx = parseFloat(rxString);
-
-    var ryString = ry.toString().replace('.', '');
-    ryString = '.' + ryString;
-    if (ryString.includes('-')) {
-      ryString = ryString.replace('-', '');
-      ryString = '-' + ryString;
-    }
-    newry = parseFloat(ryString);
-
     var width = window.innerWidth / 4;
     var height = window.innerHeight / 4;
 
-    var points = [0, height/2, width/2, 0];
+    var normalizer = Math.max(Math.abs(rx), Math.abs(ry)) / 0.9;
+    var newrx = rx / normalizer;
+    var newry = ry / normalizer;
 
-    if(newrx > 0 && newry > 0) {
+    var points = [0, height/2, width/2, 0];
+    if (newrx > 0 && newry > 0) {
       points = [width*0.1, height*0.9, width*newrx, height-height*newry];
     } else if (newrx > 0 && newry < 0) {
-      points = [width*0.1, height*0.1, width*newrx, height+height*newry];
+      points = [width*0.1, height*0.1, width*newrx, height*newry*-1];
     } else if (newrx < 0 && newry > 0) {
-      points = [width*-1*newrx, height*0.9, width*0.1, height-height*newry];
+      points = [width*0.9, height*0.9, width-width*newrx*-1, height-height*newry];
     } else if (newrx < 0 && newry < 0) {
-      points = [width*-1*newrx, height*0.1, width*0.1, height+height*newry];
+      points = [width*0.9, height*0.1, width-width*newrx*-1, height*newry*-1];
     }
 
     var stage = new Konva.Stage({
@@ -214,14 +201,12 @@ function calculate() {
 
     var layer = new Konva.Layer();
 
-
-
     var arrow = new Konva.Arrow({
       x: stage.width() / 10,
       y: stage.height() / 10,
       points: points,
-      pointerLength: 20,
-      pointerWidth: 20,
+      pointerLength: 15,
+      pointerWidth: 10,
       fill: 'black',
       stroke: 'black',
       strokeWidth: 4,
